@@ -23,6 +23,18 @@ app.use(convert(json()));
 app.use(convert(logger()));
 app.use(convert(require('koa-static')(__dirname + '/assets')));
 
+app.use((ctx, next) => {
+	console.log("中间件1 前");
+	next();
+	console.log("中间件1 后");
+});
+
+app.use((ctx, next) => {
+	console.log("中间件2 前");
+	next();
+	console.log("中间件2 后");
+});
+
 // Route
 const index = require('./routes/index');
 
